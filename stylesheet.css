@@ -48,6 +48,16 @@ body {
 
 }
 
+.3dObject {
+
+    padding-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 20px;
+
+}
 
 .footer {
     color: white;
