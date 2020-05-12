@@ -20,7 +20,7 @@
 <body>
   <script src="js/three.js"> </script>
     <script>
-      var scene = new THREE.Scene();
+      var scene = new three.Scene();
       var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
       var renderer = new THREE.WebGLRenderer();
@@ -36,7 +36,7 @@
       scene.add(cube);
 
       //By default camera and object are rendered at the same origin point. If you don't change the camera position you can't see the object because they're clipped inside eachother
-      camera.position.z = 3;
+      //camera.position.z = 3;
 
       //game logic
       var update = function() {
