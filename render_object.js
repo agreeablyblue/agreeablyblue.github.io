@@ -22,16 +22,16 @@ window.addEventListener( 'resize', function()
 //Creates a grid behind the object being rendered
 var size = 10;
 var divisions = 10;
-
 var gridHelper = new THREE.GridHelper( size, divisions );
 scene.add( gridHelper )
 
 //Generates the shape rendered, and gives it a mesh
 var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+var material = new THREE.MeshBasicMaterial( { color: 0x6699cc } );
 var cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
-cube.position.y = .5;
+cube.position.y = 0.5;
+
 //Pulls the camera back from the rendered shape so the shape is in view
 camera.position.z = 3;
 camera.position.y = 1;
