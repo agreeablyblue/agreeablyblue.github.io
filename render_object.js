@@ -19,6 +19,8 @@ window.addEventListener( 'resize', function()
   camera.updateProjectionMatrix( );
 })
 
+
+
 //Generates the shape rendered, and gives it a mesh
 var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
