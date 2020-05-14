@@ -39,8 +39,8 @@
 
 .leftContent {
   padding-top: 1em;
-  height: 95%;
-  width: 20%;
+  height: 95vh;
+  width: 20vw;
   float: right;
   background-color: #EEEEEE;
   text-align: center;
