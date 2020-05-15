@@ -12,7 +12,7 @@ document.body.appendChild( renderer.domElement );
 //Scalable window resizing
 window.addEventListener( 'resize', function()
 {
-  var width = window.innerWidth * 0.79;
+  var width = window.innerWidth *0.79;
   var height = window.innerHeight * 0.95;
   renderer.setSize( width, height );
   camera.aspect = width/height;
@@ -23,6 +23,11 @@ function floatLeft(){
   renderer.style.cssFloat="left";
 }
 
+//OrbitControls
+
+var controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+
 
 //Creates a grid behind the object being rendered
 var size = 10;
@@ -32,7 +37,7 @@ scene.add( gridHelper )
 
 //Generates the shape rendered, and gives it a mesh
 var cube = new THREE.Mesh(
-  new THREE.BoxGeometry(4,2,0.01),
+  new THREE.BoxGeometry(1, 1, 1),
   new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/airplane.png')})
 );
 
@@ -40,11 +45,11 @@ var cube = new THREE.Mesh(
 cube.material.side = THREE.DoubleSide;
 scene.add(cube);
 
-cube.position.y = 0.5;
+//cube.position.y = 0.5;
 
 //Pulls the camera back from the rendered shape so the shape is in view
 camera.position.z = 3;
-camera.position.y = 1;
+//camera.position.y = 1;
 //Animation function which gives the cube some rotation
 var animate = function ( ) {
 requestAnimationFrame( animate );
