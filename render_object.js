@@ -31,10 +31,15 @@ var gridHelper = new THREE.GridHelper( size, divisions );
 scene.add( gridHelper )
 
 //Generates the shape rendered, and gives it a mesh
-var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-var material = new THREE.MeshBasicMaterial( { color: 0x6699cc } );
-var cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+var cube = new THREE.Mesh(
+  new THREE.BoxGeometry(4,2,0.01),
+  new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/airplane.png')})
+);
+
+
+cube.material.side = THREE.DoubleSide;
+scene.add(cube);
+
 cube.position.y = 0.5;
 
 //Pulls the camera back from the rendered shape so the shape is in view
@@ -43,10 +48,10 @@ camera.position.y = 1;
 //Animation function which gives the cube some rotation
 var animate = function ( ) {
 requestAnimationFrame( animate );
-
+/*
 cube.rotation.x += 0.01;
 cube.rotation.y += 0.01;
-
+*/
 renderer.render( scene, camera );
 };
 
