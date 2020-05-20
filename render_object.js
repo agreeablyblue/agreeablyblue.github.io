@@ -4,10 +4,11 @@ var scene = new THREE.Scene( );
 //Camera which defines how the object is viewed
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
-//Establishes the renderer defined by three js
+//Establishes the renderer defined by three js, sets the width to 80% of the screen, and the height to 95% of the screen. It also changes the background color of the renderer window to light grey
 var renderer = new THREE.WebGLRenderer( );
 renderer.setSize( window.innerWidth * 0.79 , window.innerHeight * 0.95 );
 document.body.appendChild( renderer.domElement );
+renderer.setClearColor("#e5e5e5");
 
 //Scalable window resizing
 window.addEventListener( 'resize', function()
@@ -17,19 +18,22 @@ window.addEventListener( 'resize', function()
   renderer.setSize( width, height );
   camera.aspect = width/height;
   camera.updateProjectionMatrix( );
-})
-
-function floatLeft(){
-  renderer.style.cssFloat="left";
-}
+});
 
 //OrbitControls
+var orbit = new THREE.OrbitControls( camera, renderer.domElement );
+orbit.update();
+orbit.addEventListener('change', animate);
 
-var controls = new THREE.OrbitControls( camera, renderer.domElement );
+//TransformControls
+var transform = new THREE.TransformControls(camera, renderer.domElement);
+//transform.addEventListener('change', animate); //Crashes the scene for some reason still wip
 
+transform.addEventListener('dragging-changed', function(event){
+  orbit.enabled = ! event.value;
+});
 
-
-//Creates a grid behind the object being rendered
+//Grid Helper creator
 var size = 10;
 var divisions = 10;
 var gridHelper = new THREE.GridHelper( size, divisions );
@@ -41,22 +45,24 @@ var cube = new THREE.Mesh(
   new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/airplane.png')})
 );
 
-
 cube.material.side = THREE.DoubleSide;
 scene.add(cube);
 
-//cube.position.y = 0.5;
+//Attaches transform controls to the rendererd shape, adds control handles to the scene, and sets the control mode to rotation
+transform.attach(cube);
+scene.add(transform);
+transform.setMode("rotate");
 
 //Pulls the camera back from the rendered shape so the shape is in view
 camera.position.z = 3;
-//camera.position.y = 1;
-//Animation function which gives the cube some rotation
+
+//Ambient light generator
+var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 5.0 );
+
+//Function animate which calls the renderer to render the scene
 var animate = function ( ) {
 requestAnimationFrame( animate );
-/*
-cube.rotation.x += 0.01;
-cube.rotation.y += 0.01;
-*/
+
 renderer.render( scene, camera );
 };
 
