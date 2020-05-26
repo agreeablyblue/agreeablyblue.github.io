@@ -33,15 +33,17 @@ transform.addEventListener('dragging-changed', function(event){
   orbit.enabled = ! event.value;
 });
 
-//Mtl loader testing
+//Mesh to hold the rendered airplane
 var mesh = null;
 
+//MTLLoader
 var mtlLoader = new THREE.MTLLoader();
 mtlLoader.setPath( "threejs_example_project/assets/" );
 mtlLoader.load( 'privateJet.mtl', function( materials ) {
 
   materials.preload();
 
+  //OBJ Loader
   var objLoader = new THREE.OBJLoader();
   objLoader.setMaterials( materials );
   objLoader.setPath( "threejs_example_project/assets/" );
@@ -50,6 +52,8 @@ mtlLoader.load( 'privateJet.mtl', function( materials ) {
     mesh = object;
     mesh.position.y = -30;
     scene.add( mesh );
+
+    //Attaches transform controls to the rendererd shape, adds control handles to the scene, and sets the control mode to rotation
     transform.attach(mesh);
     scene.add(transform);
     transform.setMode("rotate");
@@ -89,19 +93,8 @@ var divisions = 100;
 var gridHelper = new THREE.GridHelper( size, divisions );
 scene.add( gridHelper )
 
-/*
-//Generates the shape rendered, and gives it a mesh
-var cube = new THREE.Mesh(
-  new THREE.BoxGeometry(1, 1, 1),
-  new THREE.MeshBasicMaterial({map: THREE.ImageUtils.loadTexture('textures/airplane.png')})
-);
-*/
-/*
-cube.material.side = THREE.DoubleSide;
-scene.add(cube);
-*/
 
-//Attaches transform controls to the rendererd shape, adds control handles to the scene, and sets the control mode to rotation
+
 
 
 //Pulls the camera back from the rendered shape so the shape is in view
@@ -109,11 +102,17 @@ camera.position.z = 350;
 
 
 //Ambient light generator
-var ambientLight = new THREE.AmbientLight( 0xFFFFFF, 5.0 );
+var pointLight = new THREE.PointLight(0xFFFFFF, 20, 1000);
+pointLight.position.set(0, 500, 25);
+scene.add(pointLight);
 
 //Function animate which calls the renderer to render the scene
 var animate = function ( ) {
 requestAnimationFrame( animate );
+
+document.getElementById("xAngle").innerHTML = "X Angle: " + THREE.Math.radToDeg(mesh.rotation.x) %360;
+document.getElementById("yAngle").innerHTML = "Y Angle: " + THREE.Math.radToDeg(mesh.rotation.y) %360;
+document.getElementById("zAngle").innerHTML = "Z Angle: " + THREE.Math.radToDeg(mesh.rotation.z) %360;
 
 renderer.render( scene, camera );
 };
