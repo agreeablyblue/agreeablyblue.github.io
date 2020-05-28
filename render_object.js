@@ -5,25 +5,31 @@ var scene = new THREE.Scene( );
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 10000 );
 
 //Establishes the renderer defined by three js, sets the width to 80% of the screen, and the height to 95% of the screen. It also changes the background color of the renderer window to light grey
-var renderer = new THREE.WebGLRenderer( );
-renderer.setSize( window.innerWidth * 0.79 , window.innerHeight * 0.95 );
-document.body.appendChild( renderer.domElement );
+var container = document.getElementById( 'canvas' );
+document.body.appendChild( container );
+
+renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight);
+container.appendChild( renderer.domElement );
+
 renderer.setClearColor("#efefef");
 
 //Scalable window resizing
 window.addEventListener( 'resize', function()
 {
-  var width = window.innerWidth *0.79;
-  var height = window.innerHeight * 0.95;
+  var width = window.innerWidth;
+  var height = window.innerHeight;
   renderer.setSize( width, height );
   camera.aspect = width/height;
   camera.updateProjectionMatrix( );
 });
 
 //OrbitControls
+/*
 var orbit = new THREE.OrbitControls( camera, renderer.domElement );
 orbit.update();
 orbit.addEventListener('change', animate);
+*/
 
 //TransformControls
 var transform = new THREE.TransformControls(camera, renderer.domElement);
@@ -91,28 +97,34 @@ scene.add(skybox);
 var size = 850;
 var divisions = 100;
 var gridHelper = new THREE.GridHelper( size, divisions );
-scene.add( gridHelper )
+scene.add( gridHelper );
 
 
-
-
-
-//Pulls the camera back from the rendered shape so the shape is in view
-camera.position.z = 350;
-
+//Focuses the camera on the rendered object
+camera.position.y = 450;
+camera.rotation.order = "YXZ";
+camera.lookAt(0,0,0);
+camera.rotation.y = 1.5698;
 
 //Ambient light generator
 var pointLight = new THREE.PointLight(0xFFFFFF, 20, 1000);
-pointLight.position.set(0, 500, 25);
+pointLight.position.set(0, 500, 0);
 scene.add(pointLight);
 
+var defaultRotation = new THREE.Quaternion();
 //Function animate which calls the renderer to render the scene
 var animate = function ( ) {
+
 requestAnimationFrame( animate );
 
-document.getElementById("xAngle").innerHTML = "X Angle: " + THREE.Math.radToDeg(mesh.rotation.x) %360;
-document.getElementById("yAngle").innerHTML = "Y Angle: " + THREE.Math.radToDeg(mesh.rotation.y) %360;
-document.getElementById("zAngle").innerHTML = "Z Angle: " + THREE.Math.radToDeg(mesh.rotation.z) %360;
+//Goes to 180 currently because angleTo is measure the distance from the starting point to the current point
+//The furthest point away from the starting point technically is 180 degrees away so it causes issues
+//Got to fix this in the next update
+
+var angleOfY = defaultRotation.angleTo(mesh.quaternion);
+var y = THREE.Math.radToDeg(angleOfY).toFixed(2);
+
+document.getElementById("yAngle").innerHTML = "Y-Axis Rotation: " + y + "°";
 
 renderer.render( scene, camera );
 };

@@ -27,9 +27,9 @@
 
 .footer {
   width: 100%;
-  height: 3%;
+  height: 2%;
   display: block;
-  background-color: #504f54;
+  background-color: #333333;
   color: white;
   font-family: 'Ubuntu', sans-serif;
   font-size: 100%;
@@ -37,12 +37,43 @@
   text-align: center;
 }
 
-.leftContent {
-  padding-top: 1em;
-  height: 95vh;
-  width: 20vw;
+.wrapper{
+  width: 100%;
   float: right;
-  background-color: #EEEEEE;
-  text-align: center;
+
+}
+.blueBar{
+  position: absolute;
+  left: 77.5vw;
+  top: 8vh;
+  color:#6699CC;
+  z-index: 5;
+  height: 5%;
+  width: 0.5%;
+  float: right;
+  background-color: #6699CC;
+  opacity:1;
+
+}
+
+.leftContent {
+  position: absolute;
+  left: 78vw;
+  top: 8vh;
+  color:white;
+  z-index: 5;
+  height: 5%;
+  width: 20%;
+  float: right;
+  background-color: #000000;
+  opacity:0.70;
+  padding-left: .9vw;
+  text-align: left;
+  font-size: 1.9vh;
   font-family: 'Ubuntu', sans-serif;
+}
+
+.canvas{
+  position: absolute;
+  z-index:3;
 }
