@@ -1,49 +1,74 @@
 <html>
 
 <head>
-	<link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
 	<title>2D Rotations</title>
-</head><!--End Head-->
+</head>
+<!-- End Head -->
 
 <body>
 
 	<div class="header">
-	<h1>Three Dimensional <span>Rotation</span></h1>
-	</div><!--End Header-->
+		<h1>Three Dimensional <span>Rotation</span></h1>
+	</div>
+	<!-- End Header -->
 
-<!--Container for the ThreeJS scene-->
+	<!-- Container for the ThreeJS scene -->
 
 
-<div class="wrapper">
-	<div class="blueBar"></div>
-	<div class="leftContent">
-		<div class="leftHeader">
-			<br>
-			<!--Divs to hold the angles of rotation for the plane-->
-			<div class = "yAngle" id="yAngle"></div>
-			<br>
-		</div><!--End leftHeader-->
-	</div><!--End Left Content-->
-</div>
+	<div class="wrapper">
 
-<div id = "canvas"></div>
+		<!-- Object Rotation Holder -->
+		<div class="objectBlueBar"></div>
+		<div class="objectRotation">
+				<br>
+				<!--Displays Angle of Object Rotation. Output comes form the animate function in render_object.js -->
+				<div class="yAngle" id="yAngle"></div>
+				<!--End of angle displaying divs-->
+				<br>
+		</div>
+		<!-- End Object Rotation Holder -->
 
+		<!--Camera Rotation Holder-->
+		<div class="cameraBlueBar"></div>
+		<div class="cameraRotation">
+			<div class="cameraAngle" id = "cameraAngle"></div>
+		</div>
+		<!--End Camera Rotation Holder-->
+
+		<!-- Camera Movement Button -->
+		<div class="buttonEffect"></div>
+		<button type="button" class="btn" id="btn">Move Camera</button>
+		<!-- End Camera Movement Button -->
+
+		<!-- Scene Reset Button -->
+		<div class="resetEffect"></div>
+		<button type="button" class="btnReset" id="btnReset">Reset</button>
+		<!-- End Scene Reset Button -->
+
+	</div>
+
+	<!-- Canvas Div ThreeJS scene is appended too -->
+	<div id="canvas" class="canvas"></div>
+	<!-- End ThreeJS Canvas -->
+
+	<!-- Calls For All ThreeJS Scripts Utilized -->
 	<script src="threejs_example_project\js\three.js"></script>
 	<script src="threejs_example_project\js\MTLLoader.js"></script>
 	<script src="threejs_example_project\js\OBJLoader.js"></script>
 	<script src="threejs_example_project\js\OrbitControls.js"></script>
 	<script src="threejs_example_project\js\TransformControls.js"></script>
+	<!-- End ThreeJS Call -->
 
+	<!-- Script Call For Developer Defined ThreeJS Scene Render -->
 	<script src="render_object.js"></script>
+	<!-- End Script Call -->
 
+	<!-- Footer -->
+	<div class="footer"></div>
+	<!--End Footer-->
 
-		<div class="footer">
-
-		</div>
-			<div class="footer">
-
-			</div> <!--End Footer-->
-
-</body><!--End Body-->
+</body>
+<!--End Body-->
 
 </html>

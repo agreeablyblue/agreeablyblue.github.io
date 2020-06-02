@@ -42,7 +42,7 @@
   float: right;
 
 }
-.blueBar{
+.objectBlueBar{
   position: absolute;
   left: 77.5vw;
   top: 8vh;
@@ -56,7 +56,7 @@
 
 }
 
-.leftContent {
+.objectRotation {
   position: absolute;
   left: 78vw;
   top: 8vh;
@@ -73,7 +73,99 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
-.canvas{
+.cameraRotation{
   position: absolute;
-  z-index:3;
+  left: 78vw;
+  top: 14vh;
+  color:white;
+  z-index: 5;
+  height: 5%;
+  width: 20%;
+  float: right;
+  background-color: #000000;
+  opacity:0.70;
+  padding-left: .9vw;
+  text-align: left;
+  font-size: 1.9vh;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.cameraBlueBar{
+  position: absolute;
+  left: 77.5vw;
+  top: 14vh;
+  color:#6699CC;
+  z-index: 5;
+  height: 5%;
+  width: 0.5%;
+  float: right;
+  background-color: #6699CC;
+  opacity:1;
+}
+.buttonEffect{
+  position: absolute;
+  left: 77.5vw;
+  top: 20vh;
+  color:#6699CC;
+  z-index: 5;
+  height: 5%;
+  width: 0.5%;
+  float: right;
+  background-color: #6699CC;
+  opacity:1;
+}
+.btn{
+  width: 6%;
+  height: 5%;
+  position: absolute;
+  z-index: 5;
+  left: 78vw;
+  top: 20vh;
+  opacity: 0.70;
+  color: white;
+  background-color: black;
+  text-align: left;
+  font-size: 1.9vh;
+  padding-left: .9vw;
+  border: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+.btn:hover{
+  background-color: #6699CC;
+}
+
+.resetEffect{
+  position: absolute;
+  left: 84.5vw;
+  top: 20vh;
+  color:#6699CC;
+  z-index: 5;
+  height: 5%;
+  width: 0.5%;
+  float: right;
+  background-color: #6699CC;
+  opacity:1;
+}
+.btnReset{
+  width: 6%;
+  height: 5%;
+  position: absolute;
+  z-index: 5;
+  left: 85vw;
+  top: 20vh;
+  opacity: 0.70;
+  color: white;
+  background-color: black;
+  text-align: left;
+  font-size: 1.9vh;
+  padding-left: .9vw;
+  border: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.btnReset:hover{
+  background-color: #6699CC;
+}
+.canvas{
+  width: 100%;
 }
