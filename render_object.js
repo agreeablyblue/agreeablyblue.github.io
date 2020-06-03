@@ -107,9 +107,10 @@ scene.add(gridHelper);
 
 //Focuses the camera on the rendered object
 camera.position.y = 450;
-camera.rotation.order = "YXZ";
 camera.lookAt(0, 0, 0);
 camera.rotation.y = 1.5698;
+camera.rotation.order = "YXZ";
+
 
 //Ambient light generator
 var pointLight = new THREE.PointLight(0xFFFFFF, 20, 1000);
@@ -173,25 +174,17 @@ var animate = function() {
     y = y * -1;
   }
 
+  //Camera isn't starting at true 0. I'm an idiot
+  //
+  //
+  //
+
   //Get Camera Rotation angle
-  var cameraY = defaultRotation.angleTo(camera.quaternion);
-  var cY = THREE.Math.radToDeg(cameraY).toFixed(2);
-  if (camera.rotation.y < 0) {
-    cY = cY * -1;
-  }
+  var cY = camera.position.y.toFixed(2);
+  var cX = camera.position.x.toFixed(2);
+  var cZ = camera.position.z.toFixed(2);
 
-  var cameraX = defaultRotation.angleTo(camera.quaternion);
-  var cX = THREE.Math.radToDeg(cameraX).toFixed(2);
-  if (camera.rotation.x < 0) {
-    cX = cX * -1;
-  }
-
-  var cameraZ = defaultRotation.angleTo(camera.quaternion);
-  var cZ = THREE.Math.radToDeg(cameraZ).toFixed(2);
-  if (camera.rotation.z < 0) {
-    cZ = cZ * -1;
-  }
-  document.getElementById("cameraAngle").innerHTML = "Camera Angles:<br> Y: "  + cY + "°  X: " + cX + "°  Z: " + cZ + "°";
+  document.getElementById("cameraAngle").innerHTML = "Camera Position:<br> X: "  + cX + ",   Y: " + cY + ",   Z: " + cZ;
   //Add object y angle rotation to text div
   document.getElementById("yAngle").innerHTML = "Y-Axis Rotation: " + y + "°";
 
