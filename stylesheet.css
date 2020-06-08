@@ -167,5 +167,7 @@
   background-color: #6699CC;
 }
 .canvas{
-  width: 100%;
+  display: block;
+  width: 50%;
+
 }

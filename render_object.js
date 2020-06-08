@@ -16,7 +16,7 @@ renderer.setClearColor("#efefef");
 
 //Scalable window resizing
 window.addEventListener('resize', function() {
-  var width = window.innerWidth;
+  var width = window.innerWidth ;
   var height = window.innerHeight;
   renderer.setSize(width, height);
   camera.aspect = width / height;
@@ -53,7 +53,7 @@ mtlLoader.load('privateJet.mtl', function(materials) {
     scene.add(mesh);
 
     //Attaches transform controls to the rendererd shape, adds control handles to the scene, and sets the control mode to rotation
-    transform.attach(mesh);
+    //transform.attach(mesh);
     scene.add(transform);
     transform.setMode("rotate");
   });
@@ -100,9 +100,10 @@ scene.add(skybox);
 
 //Grid Helper creator
 var size = 850;
-var divisions = 100;
+var divisions = 25;
 var gridHelper = new THREE.GridHelper(size, divisions);
 scene.add(gridHelper);
+transform.attach(gridHelper);
 
 
 //Focuses the camera on the rendered object
