@@ -43,7 +43,7 @@
 
 }
 .objectBlueBar{
-  position: absolute;
+  position: relative;
   left: 77.5vw;
   top: 8vh;
   color:#6699CC;
@@ -57,7 +57,7 @@
 }
 
 .objectRotation {
-  position: absolute;
+  position: relative;
   left: 78vw;
   top: 8vh;
   color:white;
@@ -74,7 +74,7 @@
 }
 
 .cameraRotation{
-  position: absolute;
+  position: relative;
   left: 78vw;
   top: 14vh;
   color:white;
@@ -91,7 +91,7 @@
 }
 
 .cameraBlueBar{
-  position: absolute;
+  position: relative;;
   left: 77.5vw;
   top: 14vh;
   color:#6699CC;
@@ -103,7 +103,7 @@
   opacity:1;
 }
 .buttonEffect{
-  position: absolute;
+  position: relative;
   left: 77.5vw;
   top: 20vh;
   color:#6699CC;
@@ -117,7 +117,7 @@
 .btn{
   width: 6%;
   height: 5%;
-  position: absolute;
+  position: relative;
   z-index: 5;
   left: 78vw;
   top: 20vh;
@@ -135,7 +135,7 @@
 }
 
 .resetEffect{
-  position: absolute;
+  position: relative;
   left: 84.5vw;
   top: 20vh;
   color:#6699CC;
@@ -149,7 +149,7 @@
 .btnReset{
   width: 6%;
   height: 5%;
-  position: absolute;
+  position: relative;
   z-index: 5;
   left: 85vw;
   top: 20vh;
