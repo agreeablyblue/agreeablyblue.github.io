@@ -53,7 +53,7 @@ mtlLoader.load('privateJet.mtl', function(materials) {
     scene.add(mesh);
 
     //Attaches transform controls to the rendererd shape, adds control handles to the scene, and sets the control mode to rotation
-    //transform.attach(mesh);
+    transform.attach(mesh);
     scene.add(transform);
     transform.setMode("rotate");
   });
@@ -103,13 +103,13 @@ var size = 850;
 var divisions = 25;
 var gridHelper = new THREE.GridHelper(size, divisions);
 scene.add(gridHelper);
-transform.attach(gridHelper);
+
 
 
 //Focuses the camera on the rendered object
 camera.position.y = 450;
-camera.lookAt(0, 0, 0);
-camera.rotation.y = 1.5698;
+//camera.lookAt(0, 0, 0);
+//camera.rotation.y = 1.5698;
 camera.rotation.order = "YXZ";
 
 
