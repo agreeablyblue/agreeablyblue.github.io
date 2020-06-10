@@ -34,11 +34,11 @@ window.addEventListener('resize', function() {
 });
 
 //Transform Controls
-var transform = new THREE.TransformControls(camera, renderer.domElement);
-transform.setRotationSnap(THREE.Math.degToRad(0.25));
-transform.axis = 'Y';
-transform.showX = false;
-transform.showZ = false;
+var pointTransform = new THREE.TransformControls(camera, renderer.domElement);
+pointTransform.setRotationSnap(THREE.Math.degToRad(0.25));
+pointTransform.axis = 'Y';
+pointTransform.showX = false;
+pointTransform.showZ = false;
 
 
 var geometry = new THREE.SphereGeometry( 5, 32, 32 );
@@ -46,9 +46,7 @@ var material = new THREE.MeshBasicMaterial( { color: 0xFF0000, wireframe: false 
 var sphere = new THREE.Mesh( geometry, material );
 s.add( sphere );
 
-transform.attach( sphere );
-scene.add( transform );
-transform.setMode("rotate");
+
 
 sphere.position.y = 0;
 sphere.position.z = -195;
@@ -64,6 +62,10 @@ var size = 650;
 var divisions = 25;
 var gridPointHelper = new THREE.GridHelper(size, divisions);
 s.add(gridPointHelper);
+
+pointTransform.attach( gridPointHelper );
+s.add( pointTransform );
+pointTransform.setMode("rotate");
 
 var GameLoop = function ( )
 {

@@ -13,8 +13,176 @@
 	<!-- End Header -->
 
 	<!-- Container for paper -->
+	<div class="paper">
+		<p><a name="toc.1"><h1>1&nbsp;Introduction</h1>
+	This document is meant to explain the basics of what a reference frame is, in 2-D space.  The main points to explain are:
+	<ul>
+
+	<li> Coordinate systems and vectors for locations
+
+	<li> Given's rotations
+
+	<li> Object vs. Frame rotation
+	</ul>
+	We'll tackle each of these in the following sections.
+
+	<p><a name="toc.2"><h1>2&nbsp;Coordinate Systems, Reference Frames, and Vectors</h1>
+	What is a location?  When we want to describe to someone else where something is, there are several ways we can do this. One might be to give them an address, e.g. <i>Anise Dr, El Paso, TX</i>.  Or, we might give directions like "down the road about a mile and then to the left." Or, we could give them a latitude and longitude so they can plug it into their GPS.
+
+	All of these methods for describing location have one thing in common: they are relative to something else. The address gives a house number, but that number only makes sense on a given street. <i>4457</i> is useless without the rest of the address.  Also, addresses on a street go up when going in a particular direction, implying a "0" location (typically a spot in downtown). Similarly, "down the road about a mile" implicitly assumes "starting from where you are." Latitude and longitude are in relationship to the equator and the prime meridian. The first question that has to be answered for any location information is "In relationship to what?" The answer to this question is what we call the origin.
+
+	What these methods do not have in common is how you describe getting from the origin to the desired location.  Because math and numbers are really useful, we would like a way to take a set of numbers (a vector) and have that describe a location in relationship to the origin.  Formally, the method for taking a set of numbers and turning it into a relative location is called a <i>coordinate system</i>.
+
+	<!-- TODO: Add figure 1 screenshot -->
+
+	While there are many possible coordinate systems, we will focus solely on <i>Cartesian coordinate systems.</i>
+	Cartesian coordinate systems use an <i>orthonormal</i> (orthogonal and unit length) set of vectors (the coordinate basis) emanating from the origin that completely characterize the location of any object in that coordinate system. By assigning one number in the location vector to each basis vector, we can express any location as the weighted sum of basis vectors. Figure 1 shows examples of vectors that define a two-dimensional (2-D) coordinate frame, but only one of them is a Cartesian due to the vectors being both orthogonal and unit length.
+
+	While defining our coordinate system to be Cartesian means that there will be <i>a</i> set of orthonormal vectors defining coordinates, which set of vectors has not yet been defined.  This decision of <i>which</i> set of vectors and their origin will be used is referred to as the <i>reference frame</i>.  By defining both the coordinate system and the reference frame, the complete mapping of numbers to locations is defined.  Combined, we refer to this as a <i>coordinate frame</i>.  In this paper, we always assume this means a Cartesian coordinate frame unless specifically stated otherwise.
+
+	<p><a name="toc.2.1"><h2>2.1&nbsp;Vectors</h2>
+	Once a Cartesian coordinate frame is defined, a simple vector can be used to define the location of any object within that coordinate frame.  For example, the vector [2,1] would mean to move 2 units along the first axis (<b>e</b><sub>1</sub>) and 1 unit along the second axis, (<b>e</b><sub>2</sub>).  Note that because this is a Cartesian coordinate system, the mapping between locations and vectors is exactly one-to-one.  (The vector [2,1] represents only one location and each location maps to exactly one vector.)
+	<br>
+	<br>
+	<b>Vector notation:</b>  <i>From here on, unless explicitly stated, we assume all vectors represent a location in a</i> Cartesian <i>coordinate frame</i>.  Furthermore, to simplify notation, when describing a vector we will bold-face it (e.g., <b>x</b>) and put a superscript on it that refers to what coordinate frame it is in.  So, we might have <i>my</i> (m) coordinate frame and <i>your</i> (y) coordinate frame. When I want to give the location for object x, I will give locations in my coordinate frame and denote that location as <b>x</b><sup>y</sup>.  When you give the location for the same object in your coordinate frame, it will be <b>x</b><sup>y</sup>.  Note that the numerical values in the two vectors may be very different, even though they refer to the same location.  Let's now discuss how to transform between coordinate frames in two-dimensions.
+
+	<p><a name="toc.3"><h1>3&nbsp;Changing Coordinate Frames</h1>
+	A reference frame for Cartesian coordinate systems is defined by two things: an origin and a set of orthonormal vectors that define directions away from the origin.  Let's start with a change of origin location.  We will be attempting to transform from my (<i>m</i>) coordinate frame to yours (<i>y</i>).
+
+	<p><a name="toc.3.1"><h2>3.1&nbsp;Handling a change in coordinate origin</h2>
+	<i>If you and I are both facing the same direction</i>, all you need to know is where <b>I</b> am in your coordinate frame. We denote this quantity <b>m</b> where the coordinate frame's letter is bolded to show it is a vector.  The transformation is now a simple vector addition operation
+	<br>
+	<center><b>x<sup>y</sup></b>=<b>x<sup>m</sup> + m</b></center>
+
+	This addition is illustrated in Figure 2.
+
+	While this equation is conceptually very simple, please realize it is for pedagogical purposes only!  In fact, <i>please forget it</i> because the caveat to use it, that the axes are the same for the coordinate frames m and y, makes it almost useless.  (That is why that equation is <i>not</i> numbered!  Please don't refer to it!)
+
+	<p><a name="toc.3.2"><h2>3.2&nbsp;Handling different coordinate frame axes</h2>
+	When transforming from one coordinate frame to another, we need to understand how the basis vectors are different between the coordinate frames.  The mapping of the basis vectors from one reference frame into another is generally referred to as a <i>rotation</i>.  In two dimensions (2-d), this is represented by a single rotation angle as shown in Figure 3.  To convert a vector from one coordinate frame's set of vectors into another, we use a <i>Given's rotation</i> matrix, defined as:
 
 
+	<!-- TODO:  Add screenshot of givens rotation matrix -->
+
+	This matrix enables the conversion of a vector between two coordinate frames with the same origin.  Consider Figure 3 that has three points ({x<sub>1</sub>,x<sub>2</sub>,x<sub>3</sub>}), all
+	<!-- TODO: Add figure 2 screenshot -->
+	<!-- TODO: Add figure 3 screenshot -->
+	expressed in the m coordinate system. Because θ = 30◦, then rotation matrix going from m to y (denoted C<sub>m</sub><sup>y</sup>) will be:
+
+	<!-- TODO: Add Cym screenshot -->
+	<br>
+
+	For each point in Figure 3, the location of that point in your coordinate system can be derived by multiplying the rotation matrix and the vector together, yielding:
+
+	<!-- TODO: Add page 4 ending example -->
+
+	Let us consider what some of these numbers mean as observing what happens numerically can give some insight into what a proper rotation does.
+	<ul>
+
+	<li> For <b>x</b><sub>1</sub> and <b>x</b><sub>2</sub>, note what happens to the non-zero components.  <b>x</b><sub>1</sub><sup>y</sup> has a negative value while <b>x</b><sub>2</sub><sup>y</sup> has a positive value.  Thinking through whether a positive or negative value should replace a zero helps determine which way the axes are rotating and what the corresponding Given's rotation should look like.
+
+	<li> Note that for <b>x</b><sub>1</sub> and <b>x</b><sub>2</sub>, the non-zero term does not change nearly as much as the zero term, while for <b>x</b><sub>3</sub> this does not appear to be as much of a pattern.  This is reflective of the fact that differentially, rotations cause movement orthogonal to a vector.
+
+	<li> Note that the output vectors of each rotation are the magnitude as the input vector.  Rotations never change the length of a vector, just express them using different axes!
+	</ul>
+
+	<p><a name="toc.3.2.1"><h3>3.2.1&nbsp;Rotation Matrix Properties</h3>
+
+	Note that the Given's rotation matrix has some special properties that we should discuss.  Mathematically, the matrix is a <i>special</i> orthonormal matrix, meaning it has the following properties:
+	<ul>
+
+	<li> The transpose of the matrix is also its inverse: C<sup>T</sup> = C<sup><font face=symbol>-</font>1</sup>
+	</td>
+	<td nowrap align=center>
+	.
+
+	<li> Each row and column of the matrix is unit length
+
+	<li> Each row (column) of the matrix is orthogonal to every other row (column) in the matrix.
+
+	<li> The determinate of the matrix is +1
+	</ul>
+
+	The first property is particularly important as the rotation matrix from one coordinate frame into another frame also gives us the inverse transform.  Mathematically:
+
+	<table cellspacing=0  border=0 align=center>
+	<tr>
+	<td nowrap align="center">
+
+		C<sup>y</sup><sub>m</sub> = (C<sup>m</sup><sub>y</sub>)<sup>T</sup>
+	</td>
+	<td nowrap align=center>
+
+	</td>
+	</tr>
+	</table>
+
+	where C<sup>T</sup>
+	</td>
+	<td nowrap align=center>
+	 represents the transpose of the matrix. This property means that if you have the matrix to go from one coordinate frame to the other, it is relatively straight-forward to go backwards as well.
+
+	<p><a name="toc.3.3"><h2>3.3&nbsp;Combined rotation and translation</h2>
+	Now, let's combine these two operations together.  <i>Note that you can <b>never</b> add vectors together unless the numbers inside those vectors correspond with the same vector directions</i>.  This is the cause of many mistakes.  Always, always align axes first!  Linguistically, to convert a vector <b>x</b> from my coordinate system <b>x</b><sup>m</sup> to yours (<b>x</b><sup>y</sup>):
+	<ol>
+
+	<li> Rotate the vector so the axes are aligned
+
+	<li> Add the origin of my coordinate frame (in your axes!) to the rotated vector
+	</ol>
+
+	Put mathematically:
+
+	<table cellspacing=0  border=0 align=center>
+	<tr>
+	<td nowrap align="center">
+
+		<b>x</b><sup>y</sup> = C<sup>y</sup><sub>m</sub> <b>x</b><sup>m</sup> + <b>m</b><sup>y</sup>
+
+	</td>
+	</tr>
+	</table>
+
+	The inverse of this operation can also be expressed as:
+
+	<table cellspacing=0  border=0 align=center>
+	<tr>
+	<td nowrap align="center">
+
+		<b>x</b><sup>m</sup> = C<sup>m</sup><sub>y</sub> <b>x</b><sup>y</sup> + <b>y</b><sup>m</sup>
+
+	</td>
+	</tr>
+	</table>
+
+	Note that <b>m</b><sup>y</sup> = <font face=symbol>-</font>C<sup>y</sup><sub>m</sub><b>y</b><sup>m</sup>, so we also have:
+
+	<table cellspacing=0  border=0 align=center>
+	<tr>
+	<td nowrap align="center">
+
+		<b>x</b><sup>m</sup> = C<sup>m</sup><sub>y</sub>(<b>x</b><sup>y</sup> <font face=symbol>-</font> <b>m</b><sup>y</sup>)
+
+	</td>
+	</tr>
+	</table>
+
+
+	Let's walk through an example.  In Figure 4, the point <b>x</b><sup>y</sup> is at (3,2), the m coordinate frame axes are rotated 45° from the y coordinate frame axes, and <b>m</b><sup>y</sup> is (1,2). Given this information, we can solve for <b>x</b><sup>m</sup>. Now, let's see if we can go backwards and recover the original vector as well.
+	This demonstrates the capability to move from any coordinate frame to another coordinate frame and back again without loss of information.
+
+	<p><a name="toc.4"><h1>4&nbsp;Frame vs. Object Rotations</h1>
+	When discussing rotations, it is very important to realize there are two types of rotations: Object rotations and Coordinate frame rotations.  So far, we have discussed frame rotations only.  However, if you read about rotations or see them explained other places, it is often not clear what is being rotated, the object or the coordinate frame.
+
+	Consider the object shown in Figure 5 (a).  This airplane-like object has a point on its nose that is at location (0,2), with the axes defined as shown in the figure.  If the airplane itself rotates (an object rotation) by 30° then a Given's rotation matrix of
+	<!-- TODO: Insert (12) -->
+	can be used to move the points to the new location.  Note that from the "aircraft's" point of view, the point will still be at (0,2), but in a coordinate frame that is observing the aircraft(object), the coordinates will have changed. This change of coordinates is shown in Figure 5 (b).  On the other hand, if the airplane is fixed but the frame that is observing the aircraft changes (once again by 30°) then the inverse of the prior Given's rotation is used to transform the points:
+
+	Whenever a rotation is being applied, it needs to be clear what the rotation is being applied for.  This gets even more confusing because, most of the time, a coordinate frame rotation corresponds with an object (a sensor, platform, etc.) physically rotating.  For example, if the aircraft is observing something not attached to the airplane, an airplane rotation of 30 degrees corresponds to a <i>coordinate frame</i> rotation.  For the purposes of our explanation of rotations, we will assume all rotations are <i>coordinate frame</i> rotations.  In other words, we assume everything in the world is fixed, but the sensor observing the word is what is rotating.
+
+	<!-- End Container for paper -->
+	</div>
+	<!-- End container for paper -->
 
 	<div class="wrapper">
 
